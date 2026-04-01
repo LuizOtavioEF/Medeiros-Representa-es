@@ -89,6 +89,7 @@ def layout_bar(fig, horizontal=False):
     return fig
 
 st.title("Medeiros Representacoes")
+st.markdown("<style>[data-testid='stMetricValue']{font-size:1rem!important}</style>", unsafe_allow_html=True)
 c1, c2, c3, c4 = st.columns(4)
 c1.metric("Faturado", fmt(dff["valor_num"].sum()))
 c2.metric("Carteira", fmt(dfc["valor_num"].sum()))
