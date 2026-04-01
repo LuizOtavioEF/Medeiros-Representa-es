@@ -54,6 +54,13 @@ def pipeline_semanal():
         log.info("Consolidação concluída!")
         log.info("  Carteira : %s", resultado["carteira"])
         log.info("  Faturado : %s", resultado["faturado"])
+        # Push automático para o GitHub
+        import subprocess
+        log.info("Enviando dados atualizados para o GitHub...")
+        subprocess.run(["git", "add", "data/historico_carteira.csv", "data/historico_faturado.csv"], check=True)
+        subprocess.run(["git", "commit", "-m", f"atualiza dados {datetime.now().strftime('%d/%m/%Y')}"], check=True)
+        subprocess.run(["git", "push"], check=True)
+        log.info("GitHub atualizado!")
     else:
         log.error("Falha na consolidação.")
 
