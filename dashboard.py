@@ -79,7 +79,7 @@ def fmt(v): return "R$ {:,.0f}".format(v).replace(",", ".")
 def layout_bar(fig, horizontal=False):
     cfg = dict(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", font_color="#9ca3af")
     if horizontal:
-        cfg["xaxis"] = dict(gridcolor="#1e2130", tickprefix="R$ ", tickformat=",.0f")
+        cfg["xaxis"] = dict(gridcolor="#1e2130", showticklabels=False, title="")
         cfg["yaxis"] = dict(gridcolor="#1e2130")
     else:
         cfg["xaxis"] = dict(gridcolor="#1e2130", type="category")
