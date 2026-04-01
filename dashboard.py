@@ -3,6 +3,28 @@ import pandas as pd
 import plotly.express as px
 import os
 
+import hmac
+
+def check_password():
+    def password_entered():
+        if hmac.compare_digest(st.session_state["password"], "medeiros"):
+            st.session_state["password_correct"] = True
+            del st.session_state["password"]
+        else:
+            st.session_state["password_correct"] = False
+
+    if st.session_state.get("password_correct", False):
+        return True
+
+    st.title("🔒 Medeiros Representações")
+    st.text_input("Senha", type="password", on_change=password_entered, key="password")
+    if "password_correct" in st.session_state:
+        st.error("Senha incorreta!")
+    return False
+
+if not check_password():
+    st.stop()
+
 st.set_page_config(page_title="Medeiros Representacoes", page_icon="📊", layout="wide")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
