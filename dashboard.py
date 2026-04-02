@@ -88,7 +88,17 @@ def layout_bar(fig, horizontal=False):
     fig.update_traces(textposition="outside")
     return fig
 
-st.title("Medeiros Representacoes")
+col_titulo, col_data = st.columns([3, 1])
+with col_titulo:
+    st.title("Medeiros Representacoes")
+with col_data:
+    ultima_atualizacao = pd.to_datetime(df_faturado["_consolidado_em"].max())
+    st.markdown(
+        "<p style='text-align:right;color:#6b7280;font-size:0.8rem;margin-top:2rem;'>"
+        "Atualizado em<br><b>" + ultima_atualizacao.strftime("%d/%m/%Y %H:%M") + "</b></p>",
+        unsafe_allow_html=True
+    )
+
 st.markdown("<style>[data-testid='stMetricValue']{font-size:1rem!important}</style>", unsafe_allow_html=True)
 c1, c2, c3, c4 = st.columns(4)
 c1.metric("Faturado", fmt(dff["valor_num"].sum()))
